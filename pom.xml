@@ -34,6 +34,12 @@
         <!--<url>http://code.google.com/p/intact/source/browse/repo/service/trunk/complex-indexer</url>-->
     <!--</scm>-->
 
+    <scm>
+        <connection>scm:git:https://bitbucket.org/intact-ebi/complex-indexer.git</connection>
+        <developerConnection>scm:git:https://bitbucket.org/intact-ebi/complex-indexer.git</developerConnection>
+        <url>https://bitbucket.org/intact-ebi/complex-indexer</url>
+    </scm>
+
     <build>
         <resources>
             <resource>
