@@ -10,10 +10,11 @@
           <artifactId>intact-hibernate-master</artifactId>
           <version>42</version>
   </parent>
-
-  <artifactId>complex-indexer</artifactId>
+    
+  <groupId>uk.ac.ebi.complex.portal</groupId>
+  <artifactId>complex-portal-indexer</artifactId>
   <version>1.1.1-SNAPSHOT</version>
-  <name>complex-indexer</name>
+  <name>Complex Portal :: Solr complex indexer</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,9 +36,9 @@
     <!--</scm>-->
 
     <scm>
-        <connection>scm:git:https://github.com/Complex-Portal/intact-complex-indexer.git</connection>
-        <developerConnection>scm:https://github.com/Complex-Portal/intact-complex-indexer.git</developerConnection>
-        <url>https://github.com/Complex-Portal/intact-complex-indexer</url>
+        <connection>scm:git:https://github.com/Complex-Portal/complex-portal-indexer.git</connection>
+        <developerConnection>scm:https://github.com/Complex-Portal/complex-portal-indexer.git</developerConnection>
+        <url>https://github.com/Complex-Portal/complex-portal-indexer</url>
     </scm>
 
     <build>
@@ -49,6 +50,32 @@
         </resources>
 
         <plugins>
+                <plugin>
+                <!--mvn jgitflow:release-start -Dgit.user=xxxx -Dgit.password=xxxx-->
+                <!--mvn jgitflow:release-finish -Dmaven.javadoc.skip=true -Dgit.user=xxxx -Dgit.password=xxxx-->
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+                    <flowInitContext>
+                        <masterBranchName>master</masterBranchName>
+                        <developBranchName>develop</developBranchName>
+                        <featureBranchPrefix>feature-</featureBranchPrefix>
+                        <releaseBranchPrefix>release-</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+                    </flowInitContext>
+                    <!-- see goals wiki page for configuration options -->
+                    <allowUntracked>true</allowUntracked>
+                    <username>${git.user}</username>
+                    <password>${git.password}</password>
+                    <pullMaster>true</pullMaster>
+                    <pullDevelop>true</pullDevelop>
+                    <pushReleases>true</pushReleases>
+                    <pushHotfixes>true</pushHotfixes>
+                    <pushFeatures>true</pushFeatures>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
