@@ -12,7 +12,7 @@
   </parent>
 
   <artifactId>complex-indexer</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1-SNAPSHOT</version>
   <name>complex-indexer</name>
 
   <properties>
@@ -35,9 +35,9 @@
     <!--</scm>-->
 
     <scm>
-        <connection>scm:git:https://bitbucket.org/intact-ebi/complex-indexer.git</connection>
-        <developerConnection>scm:git:https://bitbucket.org/intact-ebi/complex-indexer.git</developerConnection>
-        <url>https://bitbucket.org/intact-ebi/complex-indexer</url>
+        <connection>scm:git:https://github.com/Complex-Portal/intact-complex-indexer.git</connection>
+        <developerConnection>scm:https://github.com/Complex-Portal/intact-complex-indexer.git</developerConnection>
+        <url>https://github.com/Complex-Portal/intact-complex-indexer</url>
     </scm>
 
     <build>
