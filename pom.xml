@@ -1,38 +1,30 @@
 <?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <!--<groupId>uk.ac.ebi.intact.service</groupId>-->
-    <!--<artifactId>service-master</artifactId>-->
-    <!--<version>3.0.0-SNAPSHOT</version>-->
-          <groupId>uk.ac.ebi.intact.maven</groupId>
-          <artifactId>intact-hibernate-master</artifactId>
-          <version>44</version>
-  </parent>
-    
-  <groupId>uk.ac.ebi.complex.portal</groupId>
-  <artifactId>complex-portal-indexer</artifactId>
-  <version>1.1.3</version>
-  <name>Complex Portal :: Solr complex indexer</name>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <!--<groupId>uk.ac.ebi.intact.service</groupId>-->
+        <!--<artifactId>service-master</artifactId>-->
+        <!--<version>3.0.0-SNAPSHOT</version>-->
+        <groupId>uk.ac.ebi.intact.maven</groupId>
+        <artifactId>intact-hibernate-master</artifactId>
+        <version>44</version>
+    </parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <db.url>${dbUrl}</db.url>
-    <db.user>${dbUser}</db.user>
-    <db.password>${dbPassword}</db.password>
-    <email.recipients>${recipients}</email.recipients>
-    <email.sender>${sender}</email.sender>
-    <email.smtpPort>${smtpPort}</email.smtpPort>
-    <email.smtpHost>${smtpHost}</email.smtpHost>
-    <complex.url>${complexUrl}</complex.url>
-    <ontology.url>${ontologyUrl}</ontology.url>
-  </properties>
+    <groupId>uk.ac.ebi.complex.portal</groupId>
+    <artifactId>complex-portal-indexer</artifactId>
+    <version>1.1.4</version>
+    <name>Complex Portal :: Solr complex indexer</name>
 
-    <!--<scm>-->
-        <!--<connection>scm:svn:https://intact.googlecode.com/svn/repo/service/trunk/complex-indexer</connection>-->
-        <!--<developerConnection>scm:svn:https://intact.googlecode.com/svn/repo/service/trunk/complex-indexer</developerConnection>-->
-        <!--<url>http://code.google.com/p/intact/source/browse/repo/service/trunk/complex-indexer</url>-->
-    <!--</scm>-->
+    <properties>
+        <!-- UTF-8 encoding to generate the build-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <spring.version>3.2.9.RELEASE</spring.version>
+        <!--The version needs to be the same than in intact-dataexchange to avoid problems-->
+        <psi.jami.version>3.0.15</psi.jami.version>
+        <dataexchange.version>3.0.22</dataexchange.version>
+    </properties>
 
     <scm>
         <connection>scm:git:https://github.com/Complex-Portal/complex-portal-indexer.git</connection>
@@ -49,7 +41,7 @@
         </resources>
 
         <plugins>
-                <plugin>
+            <plugin>
                 <!--mvn jgitflow:release-start -Dgit.user=xxxx -Dgit.password=xxxx-->
                 <!--mvn jgitflow:release-finish -Dmaven.javadoc.skip=true -Dgit.user=xxxx -Dgit.password=xxxx-->
                 <groupId>external.atlassian.jgitflow</groupId>
@@ -129,6 +121,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
                         <executions>
                             <execution>
                                 <phase>install</phase>
@@ -163,6 +156,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
                         <executions>
                             <execution>
                                 <phase>install</phase>
@@ -192,98 +186,93 @@
         </profile>
     </profiles>
 
-  <dependencies>
-      <dependency>
-          <groupId>uk.ac.ebi.intact.core</groupId>
-          <artifactId>intact-core</artifactId>
-          <version>2.6.11</version>
-      </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>uk.ac.ebi.intact.core</groupId>
+            <artifactId>intact-core</artifactId>
+            <version>2.6.11</version>
+        </dependency>
 
-      <!-- IntAct solr schema dependencies -->
-      <dependency>
-          <groupId>uk.ac.ebi.intact.dataexchange.psimi</groupId>
-          <artifactId>intact-solr-core</artifactId>
-          <version>3.0.18</version>
-          <exclusions>
-              <exclusion>
-                  <groupId>uk.ac.ebi.intact.core</groupId>
-                  <artifactId>intact-core</artifactId>
-              </exclusion>
-          </exclusions>
-      </dependency>
+        <!-- IntAct solr schema dependencies -->
+        <dependency>
+            <groupId>uk.ac.ebi.intact.dataexchange.psimi</groupId>
+            <artifactId>intact-solr-core</artifactId>
+            <version>${dataexchange.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>uk.ac.ebi.intact.core</groupId>
+                    <artifactId>intact-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-      <!-- JAMI spring batch config -->
-      <dependency>
-          <groupId>psidev.psi.mi.jami</groupId>
-          <artifactId>jami-batch</artifactId>
-          <version>3.0.12</version>
-      </dependency>
+        <!-- JAMI spring batch config -->
+        <dependency>
+            <groupId>psidev.psi.mi.jami</groupId>
+            <artifactId>jami-batch</artifactId>
+            <version>${psi.jami.version}</version>
+        </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.10</version>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <scope>test</scope>
+        </dependency>
 
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-aspects</artifactId>
-        <version>3.2.4.RELEASE</version>
-    </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-orm</artifactId>
-          <version>3.2.4.RELEASE</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-oxm</artifactId>
-          <version>3.2.4.RELEASE</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-aop</artifactId>
-          <version>3.2.4.RELEASE</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-tx</artifactId>
-          <version>3.2.4.RELEASE</version>
-      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
 
-      <dependency>
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
-          <version>1.3.173</version>
-      </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.3.173</version>
+        </dependency>
 
-      <dependency>
-          <groupId>com.oracle</groupId>
-          <artifactId>ojdbc6</artifactId>
-          <version>11.2.0.3.0</version>
-      </dependency>
-      <!--<dependency>-->
-          <!--<groupId>org.apache.solr</groupId>-->
-          <!--<artifactId>solr-solrj</artifactId>-->
-          <!--<version>3.6.2</version>-->
-      <!--</dependency>-->
-      <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-test</artifactId>
-          <version>3.2.4.RELEASE</version>
-      </dependency>
-      <dependency>
-          <groupId>org.springframework.batch</groupId>
-          <artifactId>spring-batch-test</artifactId>
-          <version>2.1.0.RELEASE</version>
-      </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-test</artifactId>
+            <version>2.1.0.RELEASE</version>
+        </dependency>
 
-  </dependencies>
+    </dependencies>
 
     <repositories>
         <repository>
@@ -301,6 +290,7 @@
         </repository>
     </repositories>
 
+    <!-- for mojo exec-maven-plugin -->
     <pluginRepositories>
         <pluginRepository>
             <id>intact.nexus</id>
