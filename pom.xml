@@ -12,7 +12,7 @@
 
     <groupId>uk.ac.ebi.complex.portal</groupId>
     <artifactId>complex-portal-indexer</artifactId>
-    <version>1.1.5-SNAPSHOT</version>
+    <version>1.1.4</version>
     <name>Complex Portal :: Solr complex indexer</name>
 
     <properties>
