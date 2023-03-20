@@ -42,7 +42,7 @@ public class SolrServerRollbackListener implements RetryListener {
     private boolean allowCompression = true;
     int numberOfRetries = 5;
 
-    public <T> boolean open(RetryContext context, RetryCallback<T> callback) {
+    public <T, E extends Throwable> boolean open(RetryContext context, RetryCallback<T, E> callback) {
         if (solrUrl != null && solrServer == null) {
             try {
                 createSolrServer();
@@ -60,11 +60,11 @@ public class SolrServerRollbackListener implements RetryListener {
         return solrServer != null;
     }
 
-    public <T> void close(RetryContext context, RetryCallback<T> callback, Throwable throwable) {
+    public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
         // do noting
     }
 
-    public <T> void onError(RetryContext context, RetryCallback<T> callback, Throwable throwable) {
+    public <T, E extends Throwable> void onError(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
 
         if (solrServer != null){
             try {
