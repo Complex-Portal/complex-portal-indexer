@@ -7,7 +7,7 @@
 #SBATCH -p production   # partition(s)
 #SBATCH --mem=4G   # memory per node
 #SBATCH -J "COMPLEX_INDEXER"   # job name
-#SBATCH -o "/nfs/production/hhe/intact/data/complex-indexer-logs/index-complexes-%j.out"   # job output file
+#SBATCH -o "/nfs/production/hhe/intact/data/complex-indexer/logs/index-complexes-%j.out"   # job output file
 #SBATCH --mail-user=intact-dev@ebi.ac.uk   # email address
 #SBATCH --mail-type=ALL
 
