@@ -150,6 +150,7 @@
 
     <!-- common reader -->
     <bean id="curatedComplexReader" class="org.springframework.batch.item.database.JpaPagingItemReader" lazy-init="true">
+        <property name="transacted" value="false"/>
         <property name="queryString" value="select i from InteractionImpl i join i.annotations as a where a.cvTopic.shortLabel = :curatedComplex order by i.created, i.ac"/>
         <property name="parameterValues">
             <map>
