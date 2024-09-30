@@ -4,7 +4,7 @@
     <parent>
         <groupId>uk.ac.ebi.intact.maven</groupId>
         <artifactId>intact-hibernate-master</artifactId>
-        <version>48-SNAPSHOT</version>
+        <version>48</version>
     </parent>
 
     <groupId>uk.ac.ebi.complex.portal</groupId>
@@ -19,9 +19,9 @@
 
         <spring.version>4.3.30.RELEASE</spring.version>
         <!--The version needs to be the same than in intact-dataexchange to avoid problems-->
-        <psi.jami.version>3.6.0-SNAPSHOT</psi.jami.version>
-        <dataexchange.version>4.2.0-SNAPSHOT</dataexchange.version>
-        <core.version>3.1.0-SNAPSHOT</core.version>
+        <psi.jami.version>3.6.0</psi.jami.version>
+        <dataexchange.version>4.3.0-SNAPSHOT</dataexchange.version>
+        <core.version>3.1.0</core.version>
     </properties>
 
     <scm>
